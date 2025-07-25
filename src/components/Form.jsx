@@ -1,12 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { PostData } from "../API/postApi";
 
-export const Form =({data,setData})=>{
+export const Form =({data,setData,setUpdateDataApi,updateDataApi})=>{
     const [addData,setAddData]=useState({
         title:"",
         body:""
 
-    })
+    });
+
+    useEffect(()=>{
+        updateDataApi&&setAddData({
+            title:updateDataApi.title || "",
+            body:updateDataApi.body || "",
+        })
+    },[updateDataApi])
 
     const handleInputChange =(e)=>{
         const name = e.target.name;
@@ -46,7 +53,8 @@ export const Form =({data,setData})=>{
                 <label htmlFor="body"></label>
                 <input className="bg-white p-4 m-6" value={addData.body} onChange={handleInputChange} type='text' autoComplete="off" id="body" name="body" placeholder="add-post"/>
             </div>
-            <button className="bg-amber-400 p-6 hover:rounded-2xl h justify-center align-middle items-center transition-transform duration-100" type="submit">ADD</button>
+            
+            <button className="bg-amber-400 p-6 hover:rounded-2xl h w-2xl justify-center align-middle items-center transition-transform duration-100" type="submit">ADD</button>
         </form>
         </>
     )
