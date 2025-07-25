@@ -1,6 +1,7 @@
 // src/components/Posts.jsx
 import { useEffect, useState } from "react";
 import { DeletePost, getPosts } from "../API/postApi";
+import { Form } from "./Form";
 
 export const Posts = () => {
   const [data, setData] = useState([]);
@@ -34,6 +35,9 @@ export const Posts = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 md:px-10">
+      <section className="p-3 bg-[#212f3d] m-8">
+        <Form data={data} setData={setData}/>
+      </section>
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Posts</h1>
       <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {data.map((curElem) => {
@@ -43,6 +47,7 @@ export const Posts = () => {
               key={id}
               className="bg-white rounded-2xl shadow-lg p-6 space-y-4 hover:shadow-xl transition-shadow duration-300"
             >
+              <span>{id}.</span>
               <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
               <p className="text-gray-600">{body}</p>
               <div className="flex gap-4 mt-4">
