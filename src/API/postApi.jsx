@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
 
 export const api = axios.create({
@@ -20,4 +21,9 @@ export const DeletePost = (id)=>{
 //post
 export const PostData=(post)=>{
   return api.post("/posts",post);
+}
+
+//put
+export const updateData = (id,post)=>{
+  return api.put(`/posts/${id}`);
 }
